@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script src="./index.js"></script>
+  </head>
+  <body>
+    <section class="section">
+      <div class="container" style="width: 250px">
+        <div class="columns">
+          <div class="column">
+            <input id="resultado" class="input" type="text" disabled="disabled">
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column is-3">
+            <button onclick="agregarNumero(1)" class="button is-fullwidth">
+              1
+            </button>
+          </div>
+          <div class="column is-3">
+            <button onclick="agregarNumero(2)" class="button is-fullwidth">
+              2
+            </button>
+          </div>
+          <div class="column is-3">
+            <button onclick="agregarNumero(3)" class="button is-fullwidth">
+              3
+            </button>
+          </div>
+          <div class="column is-3">
+            <button onclick="operacion('+')" class="button is-fullwidth">
+              +
+            </button>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column is-3">
+            <button onclick="agregarNumero(4)" class="button is-fullwidth">
+              4
+            </button>
+          </div>
+          <div class="column is-3">
+            <button onclick="agregarNumero(5)" class="button is-fullwidth">
+              5
+            </button>
+          </div>
+          <div class="column is-3">
+            <button onclick="agregarNumero(6)" class="button is-fullwidth">
+              6
+            </button>
+          </div>
+          <div class="column is-3">
+            <button onclick="operacion('-')" class="button is-fullwidth">
+              -
+            </button>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column is-3">
+            <button onclick="agregarNumero(7)" class="button is-fullwidth">
+              7
+            </button>
+          </div>
+          <div class="column is-3">
+            <button onclick="agregarNumero(8)" class="button is-fullwidth">
+              8
+            </button>
+          </div>
+          <div class="column is-3">
+            <button onclick="agregarNumero(9)" class="button is-fullwidth">
+              9
+            </button>
+          </div>
+          <div class="column is-3">
+            <button onclick="operacion('*')" class="button is-fullwidth">
+              *
+            </button>
+          </div>
+        </div>
+
+
+        <div class="columns">
+          <div class="column is-3">
+            <button onclick="limpiarInput()" class="button is-fullwidth">
+              C
+            </button>
+          </div>
+          <div class="column is-3">
+            <button onclick="agregarNumero(0)" class="button is-fullwidth">
+              0
+            </button>
+          </div>
+          <div class="column is-3">
+            <button onclick="calcular()" class="button is-fullwidth">
+              =
+            </button>
+          </div>
+          <div class="column is-3">
+            <button onclick="operacion('/')" class="button is-fullwidth">
+              /
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </body>
+</html>
