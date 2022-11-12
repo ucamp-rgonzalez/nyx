@@ -9,14 +9,14 @@ Es importante reiniciar las variables y el arreglo, o de lo contrario todo se ac
 
 //Variables y arreglo
 let operaciones = [];
-let varUno = varDos = operador = ""; 
-let resultado = i = aux = tam = 0;
+let mostrar = varUno = varDos = operador = ""; 
+let display = resultado = i = aux = tam = 0;
 
 function calcular() {
   tam = operaciones.length;
   //Se encuentra el operador para dividir el arreglo en dos
   for( i; i<tam; i++){
-    if(operaciones[i] === "+" || operaciones[i] === "-"  || operaciones[i] === "*" || operaciones[i] === "/" ){
+    if(operaciones[i] === "+" || operaciones[i] === "-"  || operaciones[i] === "x" || operaciones[i] === "/" ){
       operador = operaciones[i];
       aux = i;
       break;
@@ -26,31 +26,39 @@ function calcular() {
   for( let j=0; j<aux; j++){ varUno = varUno + String(operaciones[j]); }
   //Ciclo para la segunda variable,  se acumulan los números del lado derecho del operador
   for( let j=aux+1; j<tam; j++){ varDos = varDos + String(operaciones[j]); }
+  //Si solo se selecciona un operador y después el "igual" todas las variables serán por default: "cero"
+  //Si solo se encuentra un operador y una de las dos variables entonces la variable faltante será por default: "cero"
+  if(tam===1){ varUno = operaciones[0];}
+  if(operaciones[0]===operador){ varUno = "0"; }
+  if(aux+1 === tam){ varDos = "0";}
   //Se realiza la operación correspondiente al operador
   switch(operador){
     case "+": resultado = parseInt(varUno) + parseInt(varDos); break;
     case "-": resultado = parseInt(varUno) - parseInt(varDos); break;
-    case "*": resultado = parseInt(varUno) * parseInt(varDos); break;
-    case "/": if(varDos !== 0) resultado = parseInt(varUno) / parseInt(varDos);
-              else{ resultado = nan; } 
-              break;
+    case "x": resultado = parseInt(varUno) * parseInt(varDos); break;
+    case "/": if(varDos !== 0){ resultado = parseInt(varUno) / parseInt(varDos); }else{ resultado = nan; } break;
+    default: resultado = parseInt(varUno); operador=""; varDos=""; break;
   }
-  //le enviamos la solución al display
-  establacer(resultado);
+  //le enviamos todas las variables, el operador y la solución al display
+  establacer(varUno +  operador + varDos + "=" + resultado);
   //limpiamos las variables y arreglos
   operaciones = [];
-  varUno = varDos = operador = ""; 
-  resultado = i = aux = tam = 0;
+  mostrar = varUno = varDos = operador = ""; 
+  display = resultado = i = aux = tam = 0;
 }
-
+//Hay dos variables auxiliares que ayudarán a acumular números de más de un dígito
 function agregarNumero(numero) {
   operaciones.push(numero);
-  establacer(numero);
+  mostrar = mostrar + String(numero);
+  display = parseInt(mostrar);
+  establacer(display);
 }
-
+//Si se detecta un operador se reinician las variables auxiliares para acumular la segunda variable
 function operacion(operador) {
   operaciones.push(operador);
   establacer(operador);
+  mostrar = "";
+  display = 0;
 }
 
 function establacer(valor) {
@@ -59,5 +67,8 @@ function establacer(valor) {
 //Se hace corrección del nombre de la función, ya que en la hoja HTML se tiene "limpiarInput()"
 //mientras que se habia declarado como "limpiar()"
 function limpiarInput(){
+  operaciones = [];
+  mostrar = varUno = varDos = operador = ""; 
+  display = resultado = i = aux = tam = 0;
   document.getElementById('resultado').value = '';
 }
