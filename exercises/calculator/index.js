@@ -39,8 +39,8 @@ function calcular() {
     case "/": if(varDos !== 0){ resultado = parseInt(varUno) / parseInt(varDos); }else{ resultado = nan; } break;
     default: resultado = parseInt(varUno); operador=""; varDos=""; break;
   }
-  //le enviamos todas las variables, el operador y la solución al display
-  establacer(varUno +  operador + varDos + "=" + resultado);
+  //le enviamos todas las variables, el operador y la solución al display.
+  establacer(varUno +  operador + varDos + "=" + resultado );
   //limpiamos las variables y arreglos
   operaciones = [];
   mostrar = varUno = varDos = operador = ""; 
