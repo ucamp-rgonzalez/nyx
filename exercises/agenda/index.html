@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Agenda</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="./index.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mb-3">
+        <div class="col-4 offset-md-4">
+          <form id="formulario">
+            <div class="mb-3">
+              <label class="form-label">Nombre(s)</label>
+              <input type="text" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Apellidos</label>
+              <input type="text" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Telefono</label>
+              <input type="text" class="form-control" />
+            </div>
+            <button type="button" class="btn btn-primary" onclick="realizarOperacion()">Agregar</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="row mt">
+        <div class="col-10 offset-md-1">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre(s)</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Telefono</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+
+            <tbody id="tabla-contenido">
+              <tr>
+                <td>1</td>
+                <td>Raul</td>
+                <td>Gonzalez</td>
+                <td>812565874</td>
+                <td>
+                  <i class="bi bi-pencil-square" onclick="editar(this)"></i>
+                  <i class="bi bi-trash3" onclick="eliminar(this)"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
