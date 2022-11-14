@@ -23,26 +23,29 @@
       <div class="row mb-3">
         <div class="col-4 offset-md-4">
           <form id="formulario">
+            <input type="hidden" class="form-control" name="id" />
+
             <div class="mb-3">
               <label class="form-label">Nombre(s)</label>
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" name="nombres" />
             </div>
 
             <div class="mb-3">
               <label class="form-label">Apellidos</label>
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" name="apellidos" />
             </div>
 
             <div class="mb-3">
               <label class="form-label">Telefono</label>
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" name="telefono" />
             </div>
-            <button type="button" class="btn btn-primary" onclick="realizarOperacion()">Agregar</button>
+            <button type="button" class="btn btn-primary" onclick="agregar()">Agregar</button>
+            <button style="float: right" type="button" class="btn btn-info" onclick="actualizar()">Actualizar</button>
           </form>
         </div>
       </div>
 
-      <div class="row mt">
+      <div class="row">
         <div class="col-10 offset-md-1">
           <table class="table">
             <thead>
@@ -55,18 +58,7 @@
               </tr>
             </thead>
 
-            <tbody id="tabla-contenido">
-              <tr>
-                <td>1</td>
-                <td>Raul</td>
-                <td>Gonzalez</td>
-                <td>812565874</td>
-                <td>
-                  <i class="bi bi-pencil-square" onclick="editar(this)"></i>
-                  <i class="bi bi-trash3" onclick="eliminar(this)"></i>
-                </td>
-              </tr>
-            </tbody>
+            <tbody id="tabla-contenido"></tbody>
           </table>
         </div>
       </div>
