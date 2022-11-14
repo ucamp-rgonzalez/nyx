@@ -4,6 +4,7 @@
 
 - Crear una clase `Usuario` que contenga lo siguiente
   - Propiedades
+    - id
     - nombres
     - apellidos
     - telefono
