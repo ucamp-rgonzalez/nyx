@@ -16,6 +16,8 @@
       crossorigin="anonymous"
     ></script>
 
+    <script src="./storage.js"></script>
+    <script src="./user.js"></script>
     <script src="./index.js"></script>
   </head>
   <body>
@@ -27,20 +29,20 @@
 
             <div class="mb-3">
               <label class="form-label">Nombre(s)</label>
-              <input type="text" class="form-control" name="nombres" />
+              <input type="text" class="form-control" name="firstName" />
             </div>
 
             <div class="mb-3">
               <label class="form-label">Apellidos</label>
-              <input type="text" class="form-control" name="apellidos" />
+              <input type="text" class="form-control" name="lastName" />
             </div>
 
             <div class="mb-3">
               <label class="form-label">Telefono</label>
-              <input type="text" class="form-control" name="telefono" />
+              <input type="text" class="form-control" name="phone" />
             </div>
-            <button type="button" class="btn btn-primary" onclick="agregar()">Agregar</button>
-            <button style="float: right" type="button" class="btn btn-info" onclick="actualizar()">Actualizar</button>
+            <button type="button" class="btn btn-primary" onclick="add()">Agregar</button>
+            <button style="float: right" type="button" class="btn btn-info" onclick="update()">Actualizar</button>
           </form>
         </div>
       </div>
@@ -58,7 +60,7 @@
               </tr>
             </thead>
 
-            <tbody id="tabla-contenido"></tbody>
+            <tbody id="table-body"></tbody>
           </table>
         </div>
       </div>
