@@ -30,7 +30,7 @@ function edit(event) {
 
 function update(event) {
   const { id, firstName, lastName, phone } = getInputData(event);
-  users.updateItem(id, (_) => ({ firstName, lastName, phone }));
+  users.updateItem(id, (user) => new User(user.id, firstName, lastName, phone));
   cleanInputs();
   populateTable(users.readItems());
 }

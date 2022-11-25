@@ -46,11 +46,7 @@ class Storage {
 
     if (!!item) {
       const [currentItem, index] = item;
-      const updatedItem = updateFunc(currentItem);
-      current[index] = {
-        id: currentItem.id,
-        ...updatedItem,
-      };
+      current[index] = updateFunc(currentItem);
       this.saveStorage(current);
     }
   }
