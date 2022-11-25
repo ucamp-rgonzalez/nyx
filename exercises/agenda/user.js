@@ -6,7 +6,7 @@ class User {
     this.phone = phone;
   }
 
-  static fromString(data) {
+  static fromObject(data) {
     return new User(
       data['id'],
       data['firstName'],

@@ -1,4 +1,4 @@
-const users = new Storage('users', User.fromString);
+const users = new Storage('users', User.fromObject);
 
 function add() {
   const id = generateId();
