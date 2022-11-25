@@ -1,104 +1,103 @@
-class Usuario {}
+const users = new Storage('users', User.fromString);
 
-let agenda = [];
+function add() {
+  const id = generateId();
+  const { firstName, lastName, phone } = getInputData();
 
-function agregar() {
-  // ¡¡¡ NO TOCAR !!!
-  // Generar ID
-  const id = generarId();
-  // Traer datos de los inputs
-  const { nombres, apellidos, telefono } = traerDatosInputs();
-  // !!!!!!!!!!!!!!!
+  const isValid = [firstName, lastName, phone].every((input) => Boolean(input));
+
+  if (!isValid) {
+    alert('Llenar todos los campos');
+    return;
+  }
+
+  const newUser = new User(id, firstName, lastName, phone);
+  users.createItem(newUser);
+  populateTable(users.readItems());
+  cleanInputs();
 }
 
-function eliminar(evento) {
-  // ¡¡¡ NO TOCAR !!!
-  // Traer los datos de la fila
-  const { id } = traerDatosTr(evento);
-  // !!!!!!!!!!!!!!!
+function destroy(event) {
+  const { id } = getDataTr(event);
+  users.deleteItem(id);
+  populateTable(users.readItems());
 }
 
-function editar(evento) {
-  // ¡¡¡ NO TOCAR !!!
-  // Traer los datos de la fila
-  const { id, nombres, apellidos, telefono } = traerDatosTr(evento);
-  // !!!!!!!!!!!!!!!
+function edit(event) {
+  const { id, firstName, lastName, phone } = getDataTr(event);
+  fillInputs(id, firstName, lastName, phone);
 }
 
-function actualizar(evento) {
-  // ¡¡¡ NO TOCAR !!!
-  // Traer los datos de los inputs
-  const { id, nombres, apellidos, telefono } = traerDatosInputs(evento);
-  // !!!!!!!!!!!!!!!
+function update(event) {
+  const { id, firstName, lastName, phone } = getInputData(event);
+  users.updateItem(id, (_) => ({ firstName, lastName, phone }));
+  cleanInputs();
+  populateTable(users.readItems());
 }
 
-/*
-  ¡¡¡ NO TOCAR !!!
-  FUNCIONES DE UTILIDAD
-  !!!!!!!!!!!!!!!!
-*/
-
-function traerDatosTr(icon) {
+function getDataTr(icon) {
   const tr = icon.closest('tr');
-  const [id, nombres, apellidos, telefono] = Array.from(tr.children)
+  const [id, firstName, lastName, phone] = Array.from(tr.children)
     .slice(0, -1)
-    .map((a) => a.innerText);
-  return { id, nombres, apellidos, telefono };
+    .map((input) => input.innerText);
+  return { id, firstName, lastName, phone };
 }
 
-function traerDatosInputs() {
+function getInputData() {
   const formData = new FormData(document.getElementById('formulario'));
   return {
     id: formData.get('id'),
-    nombres: formData.get('nombres'),
-    apellidos: formData.get('apellidos'),
-    telefono: formData.get('telefono'),
+    firstName: formData.get('firstName'),
+    lastName: formData.get('lastName'),
+    phone: formData.get('phone'),
   };
 }
 
-function limpiarInputs() {
+function cleanInputs() {
   document.getElementById('formulario').reset();
 }
 
-function rellenarInputs(id, nombres, apellidos, telefono) {
-  document.querySelector('#formulario > input').value = id;
-  document.querySelector('#formulario > div:nth-child(2) > input').value = nombres;
-  document.querySelector('#formulario > div:nth-child(3) > input').value = apellidos;
-  document.querySelector('#formulario > div:nth-child(4) > input').value = telefono;
+function fillInputs(id, firstName, lastName, phone) {
+  document.querySelector('input[name="id"]').value = id;
+  document.querySelector('input[name="firstName"]').value = firstName;
+  document.querySelector('input[name="lastName"]').value = lastName;
+  document.querySelector('input[name="phone"]').value = phone;
 }
 
-function popularTabla(datos) {
-  const tbody = document.getElementById('tabla-contenido');
+function populateTable(data) {
+  const tbody = document.getElementById('table-body');
   tbody.innerHTML = '';
-
-  datos
-    .map((d) => crearTr(d))
-    .forEach((tr) => {
-      tbody.appendChild(tr);
-    });
+  data.forEach((d) => tbody.appendChild(createTr(d)));
 }
 
-function crearTr(dato) {
+function createTr(data) {
   const tdHTML = `
-    <td>${dato.id}</td>
-    <td>${dato.traerNombres()}</td>
-    <td>${dato.traerApellidos()}</td>
-    <td>${dato.traerTelefono()}</td>
+    <td>${data.id}</td>
+    <td>${data.firstName}</td>
+    <td>${data.lastName}</td>
+    <td>${data.phone}</td>
     <td>
-      <i class="bi bi-pencil-square" onclick="editar(this)"></i>
-      <i class="bi bi-trash3" onclick="eliminar(this)"></i>
+      <i class='bi bi-pencil-square' onclick='edit(this)'></i>
+      <i class='bi bi-trash3' onclick='destroy(this)'></i>
     </td>
   `;
-  const td = document.createElement('tr');
-  td.innerHTML = tdHTML;
-  return td;
+  const tr = document.createElement('tr');
+  tr.innerHTML = tdHTML;
+  return tr;
 }
 
-function generarId() {
-  const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+function generateId() {
+  const caracteres =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let resultado = '';
   for (let i = 0; i < 5; i++) {
-    resultado += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+    resultado += caracteres.charAt(
+      Math.floor(Math.random() * caracteres.length),
+    );
   }
   return resultado;
 }
+
+window.onload = () => {
+  populateTable(users.readItems());
+};
