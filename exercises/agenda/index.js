@@ -64,18 +64,18 @@ function fillInputs(id, firstName, lastName, phone) {
   document.querySelector('input[name="phone"]').value = phone;
 }
 
-function populateTable(data) {
+function populateTable(users) {
   const tbody = document.getElementById('table-body');
   tbody.innerHTML = '';
-  data.forEach((d) => tbody.appendChild(createTr(d)));
+  users.forEach((user) => tbody.appendChild(createTr(user)));
 }
 
-function createTr(data) {
+function createTr(user) {
   const tdHTML = `
-    <td>${data.id}</td>
-    <td>${data.firstName}</td>
-    <td>${data.lastName}</td>
-    <td>${data.phone}</td>
+    <td>${user.getId()}</td>
+    <td>${user.getFirstName()}</td>
+    <td>${user.getLastName()}</td>
+    <td>${user.getPhone()}</td>
     <td>
       <i class='bi bi-pencil-square' onclick='edit(this)'></i>
       <i class='bi bi-trash3' onclick='destroy(this)'></i>

@@ -15,6 +15,22 @@ class User {
     );
   }
 
+  getId() {
+    return this.id;
+  }
+
+  getFirstName() {
+    return this.firstName;
+  }
+
+  getLastName() {
+    return this.lastName;
+  }
+
+  getPhone() {
+    return this.phone;
+  }
+
   toString() {
     return JSON.stringify({
       id: this.id,
