@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  redis:
+    build:
+      context: ./redis
+    container_name: nyx_local_redis
+    image: nyx_local_redis
+    ports:
+      - "6379:6379"
