@@ -5,6 +5,7 @@
     "prettier": "2.7.1"
   },
   "dependencies": {
+    "@fastify/cors": "^8.2.0",
     "@fastify/redis": "^6.1.0",
     "axios": "^1.2.1",
     "fastify": "^4.10.2",
